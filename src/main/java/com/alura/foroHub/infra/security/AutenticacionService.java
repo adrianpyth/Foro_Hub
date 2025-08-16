@@ -1,3 +1,4 @@
+// 📁 src/main/java/com/alura/foroHub/infra/security/AutenticacionService.java
 package com.alura.foroHub.infra.security;
 
 import com.alura.foroHub.domain.usuario.UsuarioRepository;
@@ -15,6 +16,6 @@ public class AutenticacionService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.findByCorreoElectronico(username);
+        return usuarioRepository.findByLogin(username);
     }
 }

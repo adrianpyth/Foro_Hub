@@ -1,3 +1,4 @@
+// 📁 src/main/java/com/alura/foroHub/infra/security/TokenService.java
 package com.alura.foroHub.infra.security;
 
 import com.auth0.jwt.JWT;
@@ -15,7 +16,7 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("${jwt.secret}")  // ✅ Correcto ahora
+    @Value("${jwt.secret}")
     private String secret;
 
     @Value("${jwt.expiration}")
@@ -26,7 +27,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("forohub")
-                    .withSubject(usuario.getCorreoElectronico())
+                    .withSubject(usuario.getLogin())
                     .withClaim("id", usuario.getId())
                     .withExpiresAt(generarFechaExpiracion())
                     .sign(algorithm);

@@ -1,3 +1,4 @@
+// 📁 src/main/java/com/alura/foroHub/domain/usuario/Usuario.java
 package com.alura.foroHub.domain.usuario;
 
 import jakarta.persistence.*;
@@ -9,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name = "usuario")
+@Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
 @Setter
@@ -23,38 +24,37 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    private String nombre;
-
-    @Column(name = "correo_electronico", nullable = false, unique = true)
-    private String correoElectronico;
+    private String login;
 
     @Column(nullable = false)
-    private String contrasena;
+    private String clave;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "perfiles")
-    private Perfil perfil;
+    @Column(nullable = false)
+    private String nombre;
 
-    public Usuario(String nombre, String correoElectronico, String contrasena, Perfil perfil) {
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    public Usuario(String login, String clave, String nombre, String email) {
+        this.login = login;
+        this.clave = clave;
         this.nombre = nombre;
-        this.correoElectronico = correoElectronico;
-        this.contrasena = contrasena;
-        this.perfil = perfil;
+        this.email = email;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + this.perfil.getNombre()));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return contrasena;
+        return clave;
     }
 
     @Override
     public String getUsername() {
-        return correoElectronico;
+        return login;
     }
 
     @Override

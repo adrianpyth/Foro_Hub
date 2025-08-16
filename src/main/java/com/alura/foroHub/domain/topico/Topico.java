@@ -1,3 +1,4 @@
+// 📁 src/main/java/com/alura/foroHub/domain/topico/Topico.java
 package com.alura.foroHub.domain.topico;
 
 import com.alura.foroHub.domain.curso.Curso;
@@ -7,7 +8,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Table(name = "topico")
+@Table(name = "topicos")
 @Entity(name = "Topico")
 @Getter
 @Setter
@@ -30,15 +31,15 @@ public class Topico {
     private LocalDateTime fechaCreacion;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false)
     private StatusTopico status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autor", nullable = false)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Usuario autor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "curso", nullable = false)
+    @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
     @Column(name = "respuestas")

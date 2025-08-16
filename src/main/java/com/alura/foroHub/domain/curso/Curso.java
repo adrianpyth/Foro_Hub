@@ -1,9 +1,10 @@
+// 📁 src/main/java/com/alura/foroHub/domain/curso/Curso.java
 package com.alura.foroHub.domain.curso;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "curso")
+@Table(name = "cursos")
 @Entity(name = "Curso")
 @Getter
 @Setter

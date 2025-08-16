@@ -1,3 +1,4 @@
+// 📁 src/main/java/com/alura/foroHub/infra/security/SecurityFilter.java
 package com.alura.foroHub.infra.security;
 
 import com.alura.foroHub.domain.usuario.UsuarioRepository;
@@ -31,7 +32,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             var subject = tokenService.getSubject(token);
 
             if (subject != null) {
-                var usuario = usuarioRepository.findByCorreoElectronico(subject);
+                var usuario = usuarioRepository.findByLogin(subject);
                 var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
