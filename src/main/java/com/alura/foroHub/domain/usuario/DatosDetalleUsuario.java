@@ -10,8 +10,8 @@ public record DatosDetalleUsuario(
         this(
                 usuario.getId(),
                 usuario.getNombre(),
-                usuario.getCorreoElectronico(),
-                usuario.getPerfil().getNombre()
+                usuario.getEmail(), // ✅ Cambiado de getCorreoElectronico() a getEmail()
+                "USUARIO" // ✅ Valor por defecto ya que Usuario no tiene perfil definido
         );
     }
 }

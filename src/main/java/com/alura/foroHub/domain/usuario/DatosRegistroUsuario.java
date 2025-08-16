@@ -2,7 +2,6 @@ package com.alura.foroHub.domain.usuario;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public record DatosRegistroUsuario(
         @NotBlank(message = "El nombre es obligatorio")
@@ -13,8 +12,6 @@ public record DatosRegistroUsuario(
         String correoElectronico,
 
         @NotBlank(message = "La contraseña es obligatoria")
-        String contrasena,
-
-        @NotNull(message = "El perfil es obligatorio")
-        Long perfilId
+        String contrasena
+        // ❌ Eliminado: Long perfilId
 ) {}
